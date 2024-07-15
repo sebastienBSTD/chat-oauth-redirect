@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OAuth Redirect</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Extraire les paramètres de l'URL
+        const params = new URLSearchParams(window.location.search);
+        const accessToken = params.get('access_token');
+        // Rediriger vers l'application avec le token
+        window.location.href = `chat://oauth/callback?access_token=${accessToken}`;
+    </script>
+</body>
+</html>
