@@ -5,9 +5,11 @@
 </head>
 <body>
     <script type="text/javascript">
-        // Extraire les paramètres de l'URL
-        const params = new URLSearchParams(window.location.search);
+        // Extraire le fragment de l'URL
+        const fragment = window.location.hash.substring(1);
+        const params = new URLSearchParams(fragment);
         const accessToken = params.get('access_token');
+
         // Rediriger vers l'application avec le token
         window.location.href = `chat://oauth/callback?access_token=${accessToken}`;
     </script>
