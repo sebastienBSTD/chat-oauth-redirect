@@ -5,13 +5,17 @@
 </head>
 <body>
     <script type="text/javascript">
-        // Extraire le fragment de l'URL
-        const fragment = window.location.hash.substring(1);
-        const params = new URLSearchParams(fragment);
-        const accessToken = params.get('access_token');
+        // Extraire le code d'autorisation de l'URL
+        const params = new URLSearchParams(window.location.search);
+        const authCode = params.get('code');
 
-        // Rediriger vers l'application avec le token
-        window.location.href = `chat://oauth/callback?access_token=${accessToken}`;
+        // Rediriger vers l'application avec le code d'autorisation
+        if (authCode) {
+            window.location.href = `chati://oauth/callback?code=${authCode}`;
+        } else {
+            // Gérer les erreurs ou les cas où le code d'autorisation n'est pas présent
+            console.error('No authorization code found in the URL');
+        }
     </script>
 </body>
 </html>
